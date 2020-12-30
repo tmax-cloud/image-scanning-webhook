@@ -5,14 +5,16 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"log"
 	"net/http"
 	"os"
 
 	"github.com/elastic/go-elasticsearch/esapi"
 	elasticsearch "github.com/elastic/go-elasticsearch/v7"
 	"github.com/jitaeyun/image-scanning-webhook/pkg/schemas"
+	logf "sigs.k8s.io/controller-runtime/pkg/log"
 )
+
+var logWebhook = logf.Log.WithName("webhook")
 
 func CreateClairLog(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -20,7 +22,7 @@ func CreateClairLog(w http.ResponseWriter, r *http.Request) {
 
 	// get body
 	if err := json.NewDecoder(r.Body).Decode(&m); err != nil {
-		log.Fatal(err, "error occurs while decoding service instance body")
+		logWebhook.Error(err, "error occurs while decoding service instance body")
 		return
 	}
 
@@ -35,13 +37,13 @@ func CreateClairLog(w http.ResponseWriter, r *http.Request) {
 	//set elasticsearch client
 	es, err := elasticsearch.NewClient(cfg)
 	if err != nil {
-		log.Fatalf("Error creating the client: %s", err)
+		logWebhook.Error(err, "Error creating the client: %s")
 	}
 
 	//change body data into byte
 	d, err := json.Marshal(m.Body)
 	if err != nil {
-		log.Fatalf("change body data: %s", err)
+		logWebhook.Error(err, "change body data")
 	}
 
 	//change data into io.reader
@@ -56,7 +58,7 @@ func CreateClairLog(w http.ResponseWriter, r *http.Request) {
 	// Perform the request with the client.
 	res, err := req.Do(context.Background(), es)
 	if err != nil {
-		log.Fatalf("Error getting response: %s", err)
+		logWebhook.Error(err, "Error getting response")
 	}
 
 	//response setting

@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
+
+	logf "sigs.k8s.io/controller-runtime/pkg/log"
 
 	"github.com/gorilla/mux"
 	"github.com/jitaeyun/image-scanning-webhook/pkg/apis"
@@ -15,8 +16,10 @@ const (
 	clairPrefix   = "/clair"
 )
 
+var logWebhook = logf.Log.WithName("webhook")
+
 func main() {
-	log.Println("initializing server....")
+	logWebhook.Info("initializing server....")
 
 	router := mux.NewRouter()
 	apiRouter := router.PathPrefix(apiPathPrefix).Subrouter()
@@ -29,6 +32,6 @@ func main() {
 	http.Handle("/", router)
 	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	if err != nil {
-		log.Fatal(err, "failed to initialize a server")
+		logWebhook.Error(err, "failed to initialize a server")
 	}
 }
