@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/jitaeyun/image-scanning-webhook/pkg/apis"
+	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 )
 
 const (
@@ -19,6 +20,7 @@ const (
 var logWebhook = logf.Log.WithName("webhook")
 
 func main() {
+	logf.SetLogger(zap.Logger(true))
 	logWebhook.Info("initializing server....")
 
 	router := mux.NewRouter()
