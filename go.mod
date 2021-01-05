@@ -1,4 +1,4 @@
-module github.com/jitaeyun/image-scanning-webhook
+module github.com/tmax-cloud/image-scanning-webhook
 
 go 1.14
 

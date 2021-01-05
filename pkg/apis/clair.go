@@ -10,7 +10,7 @@ import (
 
 	"github.com/elastic/go-elasticsearch/esapi"
 	elasticsearch "github.com/elastic/go-elasticsearch/v7"
-	"github.com/jitaeyun/image-scanning-webhook/pkg/schemas"
+	"github.com/tmax-cloud/image-scanning-webhook/pkg/schemas"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 )
 

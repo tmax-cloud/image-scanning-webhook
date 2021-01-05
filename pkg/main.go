@@ -7,7 +7,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 
 	"github.com/gorilla/mux"
-	"github.com/jitaeyun/image-scanning-webhook/pkg/apis"
+	"github.com/tmax-cloud/image-scanning-webhook/pkg/apis"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 )
 
