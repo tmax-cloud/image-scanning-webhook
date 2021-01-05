@@ -7,7 +7,7 @@
 - ElasticSearch 7.X
 
 
-## Build Image-scanning-webhook (Makefile 이용)
+## Build Image-scanning-webhook
 1. binary build
     - make build
 2. docker-image build
@@ -15,7 +15,7 @@
 3. docker-image push
     - make push
 4. 비고
-    - Makefile의 REGISTRY 주소는 사용자에 맞게 변경해야 합니다.
+    - Makefile의 REGISTRY 및 version은 사용자에 맞게 변경해야 합니다.
 
 ## Install Image-scanning-webhook
 > 이미지 스캐닝 오퍼레이터에서 처리한 취약점 결과를 ElasticSearch에 저장하기 위한 웹훅 서버 입니다.
