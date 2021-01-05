@@ -3,7 +3,6 @@
 > Image-scanning-webhook for HyperCloud Service
 
 ## prerequisite Install
-- Image-scanning-operator
 - ElasticSearch 7.X
 
 
