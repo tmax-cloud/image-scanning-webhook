@@ -15,7 +15,7 @@ spec:
         app: image-scanning-webhook
     spec:
       containers:
-      - image: 192.168.6.122:5000/image-scanning-webhook:0.0.1
+      - image: jitaeyun/image-scanning-webhook:0.0.1
         name: isw
         imagePullPolicy: Always      
         env:
